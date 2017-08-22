@@ -2,8 +2,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title text-center">{{ question.text }}</h3>
-            <h4 class="text-center"
-                v-if="wrongAnswerPressed">WRONG!!!</h4>
+            <transition enter-active-class="animated rubberBand"
+                        >
+                <h4 class="text-center"
+                    v-if="wrongAnswerPressed">WRONG!!!</h4>
+            </transition>
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-sm-6 text-center"
@@ -22,11 +25,12 @@
 
 
     export default {
-        data: function() {
+        data: function () {
             return {
                 question: null,
                 answers: [],
-                wrongAnswerPressed: false
+                wrongAnswerPressed: false,
+                numOfAnswers: 4
             }
         },
         props: [],
@@ -36,7 +40,7 @@
                     this.$emit('answerCorrect');
                 } else {
                     this.wrongAnswerPressed = true;
-                }
+                } 4
             }
         },
 
@@ -54,7 +58,7 @@
                 this.answers.push(answerCandidate);
             }
             // splice in to random position the correct answer
-            let i = Math.floor(Math.random() * 4)
+            let i = Math.floor(Math.random() * this.numOfAnswers)
             this.answers.splice(i, 0, this.question.correctAnswer());
         }
     }
