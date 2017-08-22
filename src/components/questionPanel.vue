@@ -3,7 +3,7 @@
         <div class="panel-heading">
             <h3 class="panel-title text-center">{{ question.text }}</h3>
             <transition enter-active-class="animated rubberBand"
-                        >
+                        leave-active-class="animated fadeOut">
                 <h4 class="text-center"
                     v-if="wrongAnswerPressed">WRONG!!!</h4>
             </transition>
@@ -40,7 +40,9 @@
                     this.$emit('answerCorrect');
                 } else {
                     this.wrongAnswerPressed = true;
-                } 4
+
+                    setTimeout(() => this.wrongAnswerPressed = false, 2000);
+                }
             }
         },
 
