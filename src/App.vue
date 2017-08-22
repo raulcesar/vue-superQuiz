@@ -60,8 +60,6 @@
     transition: opacity 1s;
   }
 
-  .fade-leave {}
-
   .fade-leave-active {
     transition: opacity 1s;
     opacity: 0;
